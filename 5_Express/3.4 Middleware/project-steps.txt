@@ -1,0 +1,47 @@
+
+Setup Files
+- index.js: Demonstrates how to use the body-parser middleware.
+- index1.js: Demonstrates how to dynamically create file paths using __dirname.
+- index2.js: Demonstrates how to use the morgan logging middleware.
+- index3.js: Shows how to create your own middleware.
+- index4.js: The main project file to create a Band Name Generator web app.
+
+ Steps to Create the Band Name Generator (in index4.js):
+
+1. Download and install Express:
+   npm install express
+
+2. Import Express:
+   import express from "express";
+
+3. Initialize the app and set the port:
+   const app = express();
+   const port = 3000;
+
+4. Listen for incoming requests:
+   app.listen(port, () => {
+     console.log(`Server is running on port ${port}`);
+   });
+
+5. Serve the index.html file using a dynamic file address:
+   - Use __dirname to locate the file.
+   - Serve it with app.get():
+   app.get("/", (req, res) => {
+     res.sendFile(__dirname + "/public/index.html");
+   });
+
+6. Install the body-parser middleware:
+   npm install body-parser
+
+7. Import and use body-parser middleware:
+   import bodyParser from "body-parser";
+   app.use(bodyParser.urlencoded({ extended: true }));
+
+8. Handle form submission using app.post():
+   - This handles data sent from the form when the Submit button is clicked.
+   - Example:
+   app.post("/submit", (req, res) => {
+     const street = req.body.street;
+     const pet = req.body.pet;
+     res.send(`Your band name could be "${street} ${pet}"`);
+   });
