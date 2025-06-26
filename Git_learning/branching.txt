@@ -1,0 +1,7 @@
+  here i am doing branching 
+  
+  There's two branches 
+     main and sub
+  This is the sub branch.
+  i made changes in the sub branch.
+  Lets try to make changes in the sub branch and then merge it to see if the changes are made in main branch.   

@@ -11,7 +11,7 @@ here you cd to the folder where this file is present then
 
   3. Then type
          git checkout text.txt 
-    This command will make the changes revert back or roll back   to the last commit you have made meaning you willl see all this again.
-    
-               
+    This command will make the changes revert back or roll back   to the last commit you have made meaning you will see all this again.
+
+            
    
