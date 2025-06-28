@@ -60,7 +60,7 @@ const config = {
 app.get("/bearerToken", async (req, res) => {
   try {
     const result = await axios.get(API_URL + "/secrets/2", config);
-    res.render("index.ejs", { content: JSON.stringify(result.data) });
+     res.render("index.ejs", { content: JSON.stringify(result.data) });
   } catch (error) {
     res.status(404).send(error.message);
   }
