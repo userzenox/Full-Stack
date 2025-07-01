@@ -10,6 +10,7 @@ function nextSequence(){
  
     r = Math.floor(r*4);
      nextcolor = arr[r];
+
      $("#" + nextcolor).fadeIn(100).fadeOut(100).fadeIn(100);
 
        randomarr.push(nextcolor);
@@ -23,11 +24,13 @@ function nextSequence(){
  $(document).keydown( function (){
         
          if(len === 0){
-
+             
              setTimeout(() => {
                nextSequence();
                  }, 600);
-         }         
+         }    
+
+   
 
 })
 
@@ -37,8 +40,6 @@ var key;
  $(".btn").click(function(e){
            
              target = e.target.id;
-             
-        
 
             // pressing(target);
              $(`.` + target).addClass("pressed");
@@ -52,15 +53,15 @@ var key;
 
             //animation
            
-            
-            
-            userarr.push(target);
+                userarr.push(target);
               
                   console.log(randomarr);
                   console.log(userarr);
-              
-         var t =  arraysEqual(userarr,randomarr);
+
+                  var t =  arraysEqual(userarr,randomarr);
            console.log("checking" + t);
+              
+       
                      
 
          
@@ -84,10 +85,7 @@ var key;
 
 
     function arraysEqual(arr1, arr2) {
-        if (arr1.length !== arr2.length){
-                   wrong();
-                    return false;
-        }
+      
         
          for (let i = 0; i < arr1.length; i++) {
               if (arr1[i] !== arr2[i]) {
@@ -96,11 +94,17 @@ var key;
               }
                    }
 
-                         setTimeout(() => {
+                     if (arr1.length === arr2.length){
+                       setTimeout(() => {
+                           userarr=[];
                            nextSequence();
                               }, 1000);
 
                         return true;
+                   
+                        }
+
+                        
                   }
     
 
