@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
       //  console.log(r);      
        res.json(jokes[r])
    })
+   
 //2. GET a specific joke
     app.get("/jokes/:id" , (req,res) =>{
        const id = parseInt(req.params.id);
