@@ -4,12 +4,6 @@ import bodyParser from "body-parser";
 const app = express();
 const port = 3000;
 
-let quiz = [
-  { country: "France", capital: "Paris" },
-  { country: "United Kingdom", capital: "London" },
-  { country: "United States of America", capital: "New York" },
-];
-
 let totalCorrect = 0;
 
 // Middleware
@@ -19,9 +13,9 @@ app.use(express.static("public"));
 let currentQuestion = {};
 
 // GET home page
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
   totalCorrect = 0;
-  await nextQuestion();
+  nextQuestion();
   console.log(currentQuestion);
   res.render("index.ejs", { question: currentQuestion });
 });
@@ -35,8 +29,7 @@ app.post("/submit", (req, res) => {
     console.log(totalCorrect);
     isCorrect = true;
   }
-   
-  
+
   nextQuestion();
   res.render("index.ejs", {
     question: currentQuestion,
@@ -45,9 +38,8 @@ app.post("/submit", (req, res) => {
   });
 });
 
-async function nextQuestion() {
+function nextQuestion() {
   const randomCountry = quiz[Math.floor(Math.random() * quiz.length)];
-
   currentQuestion = randomCountry;
 }
 
