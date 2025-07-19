@@ -36,7 +36,9 @@ app.get("/", async (req, res) => {
 //INSERT new country
 app.post("/add", async (req, res) => {
   const input = req.body["country"];
-
+  
+   console.log(input);
+   
   const result = await db.query(
     "SELECT country_code FROM countries WHERE country_name = $1",
     [input]
@@ -49,6 +51,7 @@ app.post("/add", async (req, res) => {
     await db.query("INSERT INTO visited_countries (country_code) VALUES ($1)", [
       countryCode,
     ]);
+
     res.redirect("/");
   }
 });
