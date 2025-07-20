@@ -10,16 +10,17 @@
 
 <body>
   <form class="tab-view tab-view-height-auto" action="/user" method="post">
-    <% users.forEach(function(user) { %>
+    <% users.forEach(function(user) {        
+      %>
       <input type="submit" name="user" value="<%= user.id %>" id="<%= user.id %>">
       <label for="<%= user.id %>" style="background-color: <%= user.color %>;">
-        <%= user.name %>
+        <%= user.first_name %>
       </label>
       <% }); %>
 
         <input type="submit" name="add" value="new" id="tab">
         <label for="tab">Add Family Member</label>
-
+     
   </form>
 
   <form action="/add" method="post">
@@ -389,9 +390,20 @@
   </h2>
   <script>
     const country_codes = "<%= countries %>".split(",")
+
+    console.log(country_codes);
+    
     console.log(typeof ("<%= countries %>"))
-    country_codes.forEach(code => {
-      document.getElementById(code).style.fill = "<%= color %>"
+
+     country_codes.forEach(code => {
+      const element = document.getElementById(code);
+      if (element) {
+        element.style.fill = "<%= color %>";
+        console.log(`<%= color %>`);
+        console.log(code);
+      } else {
+        console.warn(`Element with id "${code}" not found.`);
+      }
     });
   </script>
 </body>

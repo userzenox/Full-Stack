@@ -9,41 +9,62 @@ const db = new pg.Client({
   user: "postgres",
   host: "localhost",
   database: "world",
-  password: "123456",
+  password: "Piyush@132",
   port: 5432,
 });
+
 db.connect();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 let currentUserId = 1;
+let users = [];
+// let users = [
+//   { id: 1, name: "Angela", color: "teal" },
+//   { id: 2, name: "Jack", color: "powderblue" },
+// ];
 
-let users = [
-  { id: 1, name: "Angela", color: "teal" },
-  { id: 2, name: "Jack", color: "powderblue" },
-];
+async function getuser(){
+  const names = await db.query("Select id,first_name,color from person")
+    let users = [];   
+  names.rows.forEach((name) => {
+       users.push(name);
+           
+  });
+  return users;
+}
+
 
 async function checkVisisted() {
-  const result = await db.query("SELECT country_code FROM visited_countries");
+
+  const result = await db.query("select country_code from visit join person on person.id = visit.person_id join countries on countries.id = visit.country_id where person_id = $1" , users.id);
   let countries = [];
   result.rows.forEach((country) => {
+    
+     
     countries.push(country.country_code);
   });
   return countries;
 }
+
 app.get("/", async (req, res) => {
   const countries = await checkVisisted();
+   
+     const users = await  getuser();
+
   res.render("index.ejs", {
     countries: countries,
     total: countries.length,
     users: users,
     color: "teal",
+
   });
 });
+
 app.post("/add", async (req, res) => {
   const input = req.body["country"];
-
+   
   try {
     const result = await db.query(
       "SELECT country_code FROM countries WHERE LOWER(country_name) LIKE '%' || $1 || '%';",
@@ -52,6 +73,7 @@ app.post("/add", async (req, res) => {
 
     const data = result.rows[0];
     const countryCode = data.country_code;
+    
     try {
       await db.query(
         "INSERT INTO visited_countries (country_code) VALUES ($1)",
@@ -65,7 +87,11 @@ app.post("/add", async (req, res) => {
     console.log(err);
   }
 });
-app.post("/user", async (req, res) => {});
+
+
+app.post("/user", async (req, res) => {
+   
+});
 
 app.post("/new", async (req, res) => {
   //Hint: The RETURNING keyword can return the data that was inserted.
