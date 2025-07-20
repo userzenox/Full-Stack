@@ -98,8 +98,9 @@ app.post("/new", async (req, res) => {
 
   const id = result.rows[0].id;
   currentUserId = id;
-
+  
   res.redirect("/");
+
 });
 
 app.listen(port, () => {

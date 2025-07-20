@@ -9,10 +9,11 @@ create table person(
 insert into person(first_name, last_name )
 values ('angela', 'yu') ,('nick', 'kira')
 
-create table visit(
-    person_id integer references student(id)
-    country_id integer references countries(id)
-)
+CREATE TABLE visit (
+    person_id   integer REFERENCES person(id),
+    country_id  integer REFERENCES countries(id),
+    PRIMARY KEY (person_id, country_id)
+);
 
 insert into visit(person_id, country_id)
 values (1,3), (2,6), (1,8) , (3,3)
