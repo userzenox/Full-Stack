@@ -18,7 +18,7 @@ app.use(
         resave: false,
         saveUninitialized: true,
         cookie: {
-           maxAge: 1000 * 60* 60 * 24,
+           maxAge: 1000 * 60* 60 * 24
         },
     })
 );
@@ -30,16 +30,17 @@ const db = new pg.Client({
   user: "postgres",
   host: "localhost",
   database: "secret",
-  password: "",
+  password: process.env.DB_PASSWORD,
   port: 5432,
 });
 db.connect();
 
 app.get("/secrets" , (req,res) => {
-    console.log(req.user);
-       console.log("Session:", req.session);
-    console.log("Authenticated user:", req.user);
-    console.log("Is Authenticated:", req.isAuthenticated());
+    // console.log(req.user);
+    //    console.log("Session:", req.session);
+    // console.log("Authenticated user:", req.user);
+    // console.log("Is Authenticated:", req.isAuthenticated());
+
     if(req.isAuthenticated()) {
       res.render("secrets.ejs")
     }
@@ -86,6 +87,7 @@ app.post("/register", async (req, res) => {
             [email, hash]
           );
           const user = result.rows[0];
+
           req.login(user, (err) => {
             console.log("success");
             res.redirect("/secrets");
@@ -100,6 +102,7 @@ app.post("/register", async (req, res) => {
 
 
     app.post("/login" , passport.authenticate("local" , {
+          
            successRedirect: "/secrets",
            failureRedirect: "/login"
     }))
@@ -144,3 +147,4 @@ passport.deserializeUser((user, cb) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+

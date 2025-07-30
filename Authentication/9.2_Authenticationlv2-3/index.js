@@ -59,7 +59,7 @@ app.post("/register", async (req, res) => {
            console.log(result);
            res.render("login.ejs");
           }
-      })
+      });
      
     }
   } catch (err) {

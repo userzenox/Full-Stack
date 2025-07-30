@@ -56,15 +56,24 @@ app.get("/logout", (req, res) => {
   });
 });
 
-app.get("/secrets", (req, res) => {
-    console.log(req);
-    
-  if (req.isAuthenticated()) {
-    //  db.query("select secret from users where email = $1" , [])
+app.get("/secrets", async (req, res) => {
+         
+   if (req.isAuthenticated()) {
+       
+        try {
+          const result = await db.query("Select secret from users where email = $1" , [req.user.email]);
 
-    res.render("secrets.ejs");
-
-    //TODO: Update this to pull in the user secret to render in secrets.ejs
+          console.log(result);
+          const secret  = result.rows[0].secret;
+           if(secret){
+              res.render("secrets.ejs" , {secret: secret});
+           } else{
+               res.render("secrets.ejs" , {secret: "You should summit a secret!"});
+           }
+        } catch (error) {
+           console.log(err);
+           
+        }
 
   } else {
     res.redirect("/login");
@@ -72,7 +81,14 @@ app.get("/secrets", (req, res) => {
 });
 
 //TODO: Add a get route for the submit button
-    app.get("/submit.ejs" , )
+    app.get("/submit" , async (req,res) => {
+   if (req.isAuthenticated()) {  
+      res.render("submit.ejs");
+  } else {
+    res.redirect("/login");
+  }
+       
+    } )
 //Think about how the logic should work with authentication.
 
 app.get(
@@ -133,6 +149,23 @@ app.post("/register", async (req, res) => {
 
 //TODO: Create the post route for submit.
 //Handle the submitted data and add it to the database
+   app.post("/submit" , async (req,res) => {
+       console.log(req.body);
+       console.log(req.user);
+       
+       try {
+            const result = await db.query("UPDATE users SET secret=$1 where email = $2" , [req.body.secret, req.user.email])
+            console.log("Submit err");
+             return res.redirect("/secrets");
+
+         } catch (error) {
+          res.redirect("/secrets")
+          
+         }
+   });
+        
+
+
 
 passport.use(
   "local",
@@ -195,12 +228,17 @@ passport.use(
     }
   )
 );
-passport.serializeUser((user, cb) => {
-  cb(null, user);
-});
 
-passport.deserializeUser((user, cb) => {
-  cb(null, user);
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+passport.deserializeUser(async (id, done) => {
+  try {
+    const result = await db.query("SELECT * FROM users WHERE id = $1", [id]);
+    done(null, result.rows[0]);
+  } catch (error) {
+    done(error, null);
+  }
 });
 
 app.listen(port, () => {

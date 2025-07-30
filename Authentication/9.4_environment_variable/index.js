@@ -73,6 +73,7 @@ app.post(
   })
 );
 
+
 app.post("/register", async (req, res) => {
   const email = req.body.username;
   const password = req.body.password;
