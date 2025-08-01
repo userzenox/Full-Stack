@@ -1,16 +1,24 @@
-import { useState } from 'react'
 
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+const Card =() =>{
+   return (
+       <div>
+          <h2> Card component</h2>
+       </div>
+   )
+}
 
-  return (
-    <>
-      <h1> hello</h1>
-     
-    </>
-  )
+const App = () =>{
+    return (
+      <>
+      <h2> Functional arrow component</h2>
+
+        <Card/>
+        <Card/>
+        <Card/>
+        </>
+    )
 }
 
 export default App
