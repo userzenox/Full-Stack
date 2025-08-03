@@ -6,7 +6,19 @@ import pi from "./Components/Modules"
 import { doublepi,triplepi } from './Components/Modules';
 import { Fourpi } from './Components/Modules';
 import PropsCard from './Components/Props';
-import Contact from './Components/Contacts'
+import Contact from './Components/Contacts';
+
+function createCard(contact){
+   return    <PropsCard 
+           key = {contact.id}
+           name = {contact.name}
+           img = {contact.imgURL}
+
+            number={contact.phone}
+             email={contact.email}  
+      />
+}
+
 const App = () =>{
     return (
       <>
@@ -26,8 +38,25 @@ const App = () =>{
             <PropsCard name = "player2"  number= "2425245443" email = "gamer234@gggmail.com"/>
             <PropsCard name = {Contact[0].name} img = {Contact[0].imgURL}  number={Contact[0].phone} email={Contact[0].email} />
             <PropsCard name = {Contact[1].name} img = {Contact[1].imgURL} number={Contact[0].phone} email={Contact[0].email} />
+            <br/>
+            
+            <h2> Mapping </h2>
 
-            <h2> </h2>
+
+            {Contact.map(createCard)}
+
+
+  {/* This is how we can directly pass <PropsCard/> without using createCard fuction */}
+{/*   
+            {Contact.map((contact) => (
+  <PropsCard
+    key={contact.id}
+    name={contact.name}
+    img={contact.imgURL} // or img={contact.img} based on your data
+    number={contact.phone}
+    email={contact.email}
+  />
+))} */}
         </>
     )
 }
