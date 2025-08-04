@@ -11,6 +11,7 @@ import Contact from './Components/Contacts';
 function createCard(contact){
    return    <PropsCard 
            key = {contact.id}
+           id = {contact.id}
            name = {contact.name}
            img = {contact.imgURL}
 
@@ -33,7 +34,7 @@ const App = () =>{
           <h3>  <Fourpi/></h3>
 
           <h2> Learning rops</h2>
-            <PropsCard  name = "Bharav"  number= "9363676785" email = "gg@gggmail.com"/>
+            <PropsCard   name = "Bharav"  number= "9363676785" email = "gg@gggmail.com"/>
             <PropsCard name = "rimsim"  number= "4325425454" email = "racker@gggmail.com"/>
             <PropsCard name = "player2"  number= "2425245443" email = "gamer234@gggmail.com"/>
             <PropsCard name = {Contact[0].name} img = {Contact[0].imgURL}  number={Contact[0].phone} email={Contact[0].email} />
