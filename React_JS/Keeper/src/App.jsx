@@ -1,13 +1,18 @@
 import Footer from './Components/Footer';
 import Header from './Components/Header';
 import './styles.css'
-import Note from './Components/Note';
+import notes from './Components/Note';
+import ExportNote from './Components/ExportNotes';
 function App() {
   return (
     <>
       <Header/>
 
-       <Note/>
+      { 
+       notes.map( (n) => {
+         return < ExportNote key={n.key} title = {n.title} content={n.content}/>
+       })  
+      }
       
       <Footer/>
     </>
