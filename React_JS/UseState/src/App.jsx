@@ -1,5 +1,7 @@
 
 import { useState } from "react";
+import GetTime from "./Components/GetTime";
+import Destructuring from "./Components/Destructuring";
 
 function App() {
    const [count, setCount] = useState(0);
@@ -20,7 +22,14 @@ function decrease(){
     <button onClick={increase}>+</button>
     <button onClick={decrease}>-</button>
   </div>
+
+    <GetTime/>
+
+      <Destructuring/>
      </>
+      
+    
+
   )
 }
 
