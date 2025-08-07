@@ -6,7 +6,9 @@ const [honda,tesla] = cars;
 const {coloursByPopularity:[teslaTopColour], speedStats:{topSpeed:teslaTopSpeed}} = tesla
 
 
-const {coloursByPopularity:[hondaTopColour], speedStats:{topSpeed:hondaTopSpeed}} = honda
+const {
+    coloursByPopularity:[hondaTopColour], 
+    speedStats:{topSpeed:hondaTopSpeed}} = honda
 
 
 
