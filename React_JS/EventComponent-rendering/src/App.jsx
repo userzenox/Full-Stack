@@ -5,6 +5,7 @@ import Login from "./Components/Login"
 import Register from './Components/Register';
 import Event from './Components/Event'
  let isresister = true;  
+ import Form from './Components/Form';
 
 function App() {
   
@@ -16,6 +17,7 @@ function App() {
 
         <Event/>
         
+        <Form/>
    
       </>
   )

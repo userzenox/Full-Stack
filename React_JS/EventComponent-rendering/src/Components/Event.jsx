@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Event.css'
 function Event() {
-  const [headingText, setHeadingText] = useState("hello");
+  const [headingText, setHeadingText] = useState("Events");
   const [isMouseOver, setMouseOver] = useState(false);
 
   function handleClick() {
