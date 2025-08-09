@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import Todolist from './Components/Todolist'
 function App() {
     
    const [ newtodo, addnewtodo] = useState("");
@@ -16,6 +16,13 @@ function App() {
         addnewtodo("");
          }
    
+   function deleteItem(){
+      setItems((prevItems) => {
+         return prevItems.filter( (item,index) =>{
+             return index !==id
+         })        
+              })
+         }
 
   
   return (
@@ -32,7 +39,7 @@ function App() {
       <div>
         <ul>
           {items.map( (item,index) => {
-              return <li key={index}> {item}</li>
+              return  <Todolist key={index} item={item} id={index} onChecked={deleteItem}/>
            })} 
         </ul>
       </div>
