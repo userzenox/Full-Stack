@@ -2,3 +2,16 @@ npm create vite@latest my-react-app --template react
 
 
 npm create vite@latest App-name  
+
+
+
+icon :
+npm install @mui/icons-material 
+
+
+
+Install Material UI core components and styling dependencies:
+
+ npm install @mui/material @emotion/react @emotion/styled
+
+ 

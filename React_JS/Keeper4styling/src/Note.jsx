@@ -1,5 +1,5 @@
 import React from "react";
-
+import DeleteForeverIcon from '@mui/icons-material/Delete';
 function Note(props) {
   function handleClick() {
     props.onDelete(props.id);
@@ -9,7 +9,9 @@ function Note(props) {
     <div className="note">
       <h1>{props.title}</h1>
       <p>{props.content}</p>
-      <button onClick={handleClick}>DELETE</button>
+      <button onClick={handleClick}>  
+          <DeleteForeverIcon/>
+      </button>
     </div>
   );
 }

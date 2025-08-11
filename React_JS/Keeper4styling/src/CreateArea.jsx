@@ -1,10 +1,21 @@
 import React, { useState } from "react";
+import AddIcon from '@mui/icons-material/Add';
+import Fab from '@mui/material/Fab';
+import { Zoom } from '@mui/material';
 
 function CreateArea(props) {
+
+ const [Zoomin , setZoomin] = useState(false) 
   const [note, setNote] = useState({
     title: "",
     content: ""
   });
+
+  function handleZoom(){
+    setZoomin(true);
+    console.log(Zoomin);
+    
+  }
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -29,20 +40,35 @@ function CreateArea(props) {
   return (
     <div>
       <form className="create-note">
-        <input
+          { Zoomin && (<input
           name="title"
           onChange={handleChange}
           value={note.title}
           placeholder="Title"
-        />
+        
+        />)
+
+          }
+              
+        
+      
+
         <textarea
           name="content"
           onChange={handleChange}
           value={note.content}
           placeholder="Take a note..."
-          rows="3"
+          rows={ Zoomin ? 3: 1}
+          onClick={handleZoom}
         />
-        <button onClick={submitNote}>Add</button>
+
+
+        <Zoom in ={Zoomin}>
+              <Fab onClick={submitNote}>  
+            < AddIcon/>
+        </Fab>
+        </Zoom>
+       
       </form>
     </div>
   );
