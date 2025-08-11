@@ -6,15 +6,34 @@ import CreateArea from "./Components/CreateArea";
 
 
 function App() {
-   const [note, setNote] = useState(" ")
+    
+      const [ notearray, setnotearray] = useState([]);
+
+      
+    function addnote(newnote){
+        console.log(newnote);  
+         setnotearray((prevValue) => {
+           return [...prevValue , newnote];
+         })
+    }
+
+    function deletenote(id) {
+  setnotearray(prevNotes => {
+    return prevNotes.filter((noteitem, index) => index !== id);
+  });
+}
+
 
   return (
      <div>
          <Header/>
-        <CreateArea />
+        <CreateArea onadd={addnote} />
 
+       { notearray.map((noteitem,index) => {
+            return <Note key={index} id={index} title={noteitem.title} content={noteitem.content}  ondelete={deletenote}  />
+        })}
 
-      <Note key={1} title="Note title" content="Note content" />
+     
       <Footer />
      </div>
   )
