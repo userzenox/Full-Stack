@@ -24,6 +24,10 @@ function CreateArea(props) {
     function handleclick(event){
           
       props.onadd(notes)
+       setNote({
+       title:"",
+       content: ""
+   });
       event.preventDefault();  
       
     }
