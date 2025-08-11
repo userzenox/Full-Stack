@@ -14,4 +14,11 @@ Install Material UI core components and styling dependencies:
 
  npm install @mui/material @emotion/react @emotion/styled
 
- 
+
+
+ Get Icons and css : https://mui.com/material-ui/material-icons/?query=light&selected=Lightbulb
+
+
+ Get Transparent Background: https://www.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/17039638#notes 
+
+
