@@ -5,11 +5,26 @@ import { useState, useEffect } from 'react'
 function Effect() {
 const [count, setCount] = useState(0)
 
-    useEffect( ()=> {
-         setTimeout(()=>{
+    // useEffect( ()=> {
+    //      setTimeout(()=>{
+    //         setCount( count+1);
+    //      },2000)
+    // })
+
+    //    useEffect( ()=> {
+    //      setTimeout(()=>{
+    //         setCount( count+1);
+    //      },2000)
+    // },[])
+
+
+       useEffect( ()=> {
+         let timer=  setTimeout(()=>{
             setCount( count+1);
          },2000)
-    })
+
+         return () => clearTimeout(timer)
+    },[count])
 
   return (
     <>
