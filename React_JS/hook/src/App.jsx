@@ -5,6 +5,7 @@ import Effect from "./Components/useEffect"
 import UseRef from './Components/UseReff'
 import UseRef2 from './Components/UseReffAnotherUse'
 import UseMemo from './Components/useMemo'
+import UseCallbackHook from './Components/UseCallbackHook'
 
 function App() {
 
@@ -14,14 +15,17 @@ function App() {
     <>
       <Effect/>
       <hr></hr>
-      <br></br>
+      
       <UseRef/>
       <UseRef2/>
 
       <hr></hr>
-      <br></br>
+     
       <UseMemo />
       
+      <hr></hr>
+
+      <UseCallbackHook />
     </>
   )
 }
