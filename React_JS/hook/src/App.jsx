@@ -4,7 +4,10 @@ import './App.css'
 import Effect from "./Components/useEffect"
 import UseRef from './Components/UseReff'
 import UseRef2 from './Components/UseReffAnotherUse'
+import UseMemo from './Components/useMemo'
+
 function App() {
+
 
 
   return (
@@ -14,6 +17,11 @@ function App() {
       <br></br>
       <UseRef/>
       <UseRef2/>
+
+      <hr></hr>
+      <br></br>
+      <UseMemo />
+      
     </>
   )
 }
