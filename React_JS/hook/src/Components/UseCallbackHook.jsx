@@ -1,10 +1,11 @@
-import React  , {useState }from 'react'
+import React  , {useState , useCallback }from 'react'
 import Header from '../Header/Header.jsx' 
 function UseCallbackHook() {
 
     const [count , setcount] = useState(0);
 
-     const newfn = () => { }
+    //  const newfn = () => { }
+        const newfn = useCallback(() => {} , []);
        return (
       <>
         
