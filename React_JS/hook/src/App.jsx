@@ -10,6 +10,8 @@ import Contact from './Components/Contact'
 import Footer from './Header/Footer'
 import Profile from './Components/context/Profile'
 
+import UseReducerHook from './Components/UseReducerHook';
+
 function App() {
 
 
@@ -31,10 +33,13 @@ function App() {
       <UseCallbackHook />
 
       <hr></hr>
-      <Profile />
       
+      <Profile />
+    
       <Footer />
-
+      
+      <hr></hr>
+       <UseReducerHook />
       
     </>
   )
